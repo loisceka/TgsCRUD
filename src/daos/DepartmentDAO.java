@@ -5,10 +5,18 @@
  */
 package daos;
 
+import java.sql.Connection;
+
 /**
  *
  * @author loisceka
  */
 public class DepartmentDAO {
+    private Connection connection;
+
+    public DepartmentDAO(Connection connection) {
+        this.connection = connection;
+    }
+    
     
 }
