@@ -5,6 +5,8 @@
  */
 package tools;
 
+import daos.RegionDAO;
+
 /**
  *
  * @author loisceka
@@ -15,7 +17,12 @@ public class TgsCRUD {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        DBConnection dbc = new DBConnection();
+        //Test Connection
+        System.out.println(dbc.getConnection());
+
+        //Dependency Injection
+        RegionDAO rdao = new RegionDAO(dbc.getConnection());
     }
-    
+
 }
