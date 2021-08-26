@@ -18,7 +18,7 @@ public class Employee {
     private String lastName;
     private String email;
     private String phone;
-    private Date birthDate;
+    private Date hireDate;
     private int salary;
     private double commision;
     private String jobId;
@@ -28,13 +28,13 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String id, String firstName, String lastName, String email, String phone, Date birthDate, int salary, double commision, String jobId, String managerId, String departmentId) {
+    public Employee(String id, String firstName, String lastName, String email, String phone, Date hireDate, int salary, double commision, String jobId, String managerId, String departmentId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
-        this.birthDate = birthDate;
+        this.hireDate = hireDate;
         this.salary = salary;
         this.commision = commision;
         this.jobId = jobId;
@@ -82,12 +82,12 @@ public class Employee {
         this.phone = phone;
     }
 
-    public Date getBirthDate() {
-        return birthDate;
+    public Date getHireDate() {
+        return hireDate;
     }
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setHireDate(Date hireDate) {
+        this.hireDate = hireDate;
     }
 
     public int getSalary() {
@@ -132,7 +132,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", phone=" + phone + ", birthDate=" + birthDate + ", salary=" + salary + ", commision=" + commision + ", jobId=" + jobId + ", managerId=" + managerId + ", departmentId=" + departmentId + '}';
+        return "Employee{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", phone=" + phone + ", hireDate=" + hireDate + ", salary=" + salary + ", commision=" + commision + ", jobId=" + jobId + ", managerId=" + managerId + ", departmentId=" + departmentId + '}';
     }
 
     

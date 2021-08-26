@@ -33,10 +33,10 @@ public class TgsCRUD {
         EmployeeDAO empdao = new EmployeeDAO(dbc.getConnection());
         DepartmentDAO depdao = new DepartmentDAO(dbc.getConnection());
         
-//        System.out.println(depdao.insert(new Department("500B", "Consulant", "ID01", "1005")));
-//        System.out.println(depdao.update("500B", new Department("50BC", "Throw", "ID02", "1006")));
-//        System.out.println(depdao.delete("50BC"));
-//        System.out.println(depdao.getById("100"));
+//        System.out.println(empdao.insert(new Department("500B", "Consulant", "ID01", "1005")));
+//        System.out.println(empdao.update("500B", new Department("50BC", "Throw", "ID02", "1006")));
+//        System.out.println(empdao.delete("50BC"));
+        System.out.println(empdao.getById("1005"));
         
         for (Department dep : depdao.getAll()) {
             System.out.println(dep.getId()+" - "+dep.getName());
