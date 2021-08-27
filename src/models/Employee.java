@@ -135,5 +135,4 @@ public class Employee {
         return "Employee{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", phone=" + phone + ", hireDate=" + hireDate + ", salary=" + salary + ", commision=" + commision + ", jobId=" + jobId + ", managerId=" + managerId + ", departmentId=" + departmentId + '}';
     }
 
-    
 }

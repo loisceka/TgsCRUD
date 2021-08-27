@@ -18,12 +18,13 @@ import models.Department;
  * @author loisceka
  */
 public class DepartmentDAO {
+
     private Connection connection;
 
     public DepartmentDAO(Connection connection) {
         this.connection = connection;
     }
-    
+
     //GET ALL
     public List<Department> getAll() {
         List<Department> departments = new ArrayList<>();
@@ -39,6 +40,7 @@ public class DepartmentDAO {
         }
         return departments;
     }
+
     // LOCATION ID DAN MANAGER ID TIDAK BOLEH KOSONG 
     //INSERT
     public boolean insert(Department dep) {
@@ -56,7 +58,7 @@ public class DepartmentDAO {
         }
         return false;
     }
-    
+
     //UPDATE
     public boolean update(String id, Department dep) {
         try {
@@ -74,7 +76,7 @@ public class DepartmentDAO {
         }
         return false;
     }
-    
+
     //DELETE
     public boolean delete(String id) {
         try {

@@ -24,7 +24,7 @@ public class JobDAO {
     public JobDAO(Connection connection) {
         this.connection = connection;
     }
-    
+
     //GET ALL
     public List<Job> getAll() {
         List<Job> jobs = new ArrayList<>();
@@ -40,7 +40,7 @@ public class JobDAO {
         }
         return jobs;
     }
-    
+
     //INSERT
     public boolean insert(Job job) {
         try {
@@ -56,7 +56,7 @@ public class JobDAO {
         }
         return false;
     }
-    
+
     //UPDATE
     public boolean update(String id, Job job) {
         try {
@@ -74,7 +74,7 @@ public class JobDAO {
         }
         return false;
     }
-    
+
     //DELETE
     public boolean delete(String id) {
         try {

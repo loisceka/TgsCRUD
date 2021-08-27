@@ -33,9 +33,9 @@ public class EmployeeDAO {
                     .prepareStatement("SELECT * FROM tb_employee")
                     .executeQuery();
             while (resultSet.next()) {
-                emp.add(new Employee(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4)
-                        , resultSet.getString(5), resultSet.getDate(6), resultSet.getInt(7), resultSet.getDouble(8), resultSet.getString(9)
-                , resultSet.getString(10), resultSet.getString(11)));
+                emp.add(new Employee(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4),
+                         resultSet.getString(5), resultSet.getDate(6), resultSet.getInt(7), resultSet.getDouble(8), resultSet.getString(9),
+                         resultSet.getString(10), resultSet.getString(11)));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -117,9 +117,9 @@ public class EmployeeDAO {
             preparedStatement.setString(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                emp = new Employee(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4)
-                        , resultSet.getString(5), resultSet.getDate(6), resultSet.getInt(7), resultSet.getDouble(8), resultSet.getString(9)
-                , resultSet.getString(10), resultSet.getString(11));
+                emp = new Employee(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4),
+                         resultSet.getString(5), resultSet.getDate(6), resultSet.getInt(7), resultSet.getDouble(8), resultSet.getString(9),
+                         resultSet.getString(10), resultSet.getString(11));
             }
         } catch (Exception e) {
             e.printStackTrace();
