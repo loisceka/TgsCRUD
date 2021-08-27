@@ -14,8 +14,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import models.Country;
-import models.Location;
-import models.Region;
 
 /**
  *
@@ -25,10 +23,18 @@ public class CountryDAO {
 
     private Connection connection;
 
+    /**
+     *
+     * @param connection using connection to send query statement into mysql
+     */
     public CountryDAO(Connection connection) {
         this.connection = connection;
     }
 
+    /**
+     *
+     * @return List Data of Country Table
+     */
     public List<Country> getAll() {
         List<Country> countries = new ArrayList<>();
         try {
@@ -44,6 +50,11 @@ public class CountryDAO {
         return countries;
     }
 
+    /**
+     *
+     * @param country using object Country to insert or update into table Country, id from country will be used to check if ID used or not
+     * @return boolean - if statement executed will return true, if not will return false
+     */
     public boolean insertAndUpdate(Country country) {
         PreparedStatement ps = null;
         try {
@@ -65,12 +76,17 @@ public class CountryDAO {
             ps.execute();
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(RegionDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CountryDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return false;
     }
 
+    /**
+     *
+     * @param id parameter for deleting data using primary key/id
+     * @return boolean - if statement executed will return true, if not will return false
+     */
     public boolean delete(String id) {
         try {
             PreparedStatement preparedStatement = connection
@@ -84,6 +100,11 @@ public class CountryDAO {
         return false;
     }
 
+    /**
+     *
+     * @param id parameter for getting data using primary key/id
+     * @return Object Country - will return Country Data by ID or will return NULL if id invalid
+     */
     public Country getById(String id) {
         Country country = null;
         try {

@@ -21,11 +21,21 @@ public class DepartmentDAO {
 
     private Connection connection;
 
+    /**
+     *
+     * @param connection using connection to send query statement into mysql
+     */
     public DepartmentDAO(Connection connection) {
         this.connection = connection;
     }
+    
+    
 
     //GET ALL
+    /**
+     *
+     * @return List Data of Department
+     */
     public List<Department> getAll() {
         List<Department> departments = new ArrayList<>();
         try {
@@ -41,8 +51,14 @@ public class DepartmentDAO {
         return departments;
     }
 
+
     // LOCATION ID DAN MANAGER ID TIDAK BOLEH KOSONG 
     //INSERT
+    /**
+     *
+     * @param dep using object Department to insert into table department 
+     * @return boolean - if statement executed will return true, if not will return false
+     */
     public boolean insert(Department dep) {
         try {
             PreparedStatement preparedStatement = connection
@@ -59,7 +75,14 @@ public class DepartmentDAO {
         return false;
     }
 
+
     //UPDATE
+    /**
+     *
+     * @param id  parameter for updating data using primary key/id
+     * @param dep  parameter for updating data using object Department
+     * @return boolean - if statement executed will return true, if not will return false
+     */
     public boolean update(String id, Department dep) {
         try {
             PreparedStatement preparedStatement = connection
@@ -78,6 +101,12 @@ public class DepartmentDAO {
     }
 
     //DELETE
+
+    /**
+     *
+     * @param id parameter for deleting data using primary key/id
+     * @return boolean - if statement executed will return true, if not will return false
+     */
     public boolean delete(String id) {
         try {
             PreparedStatement preparedStatement = connection
@@ -92,6 +121,12 @@ public class DepartmentDAO {
     }
 
     //GET BY ID
+
+    /**
+     *
+     * @param id parameter for getting data using primary key/id
+     * @return Object Department - will return Department Data by ID or will return NULL if id invalid
+     */
     public Department getById(String id) {
         Department dep = null;
         try {

@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import models.Country;
 import models.Location;
 
 /**
@@ -24,10 +23,18 @@ public class LocationDAO {
 
     private Connection connection;
 
+    /**
+     *
+     * @param connection using connection to send query statement into mysql
+     */
     public LocationDAO(Connection connection) {
         this.connection = connection;
     }
 
+    /**
+     *
+     * @return List Data of Location Table
+     */
     public List<Location> getAll() {
         List<Location> locations = new ArrayList<>();
         try {
@@ -45,6 +52,11 @@ public class LocationDAO {
         return locations;
     }
 
+    /**
+     *
+     * @param location using object Location to insert or update into table Location, id from location will be used to check if ID used or not
+     * @return boolean - if statement executed will return true, if not will return false
+     */
     public boolean insertAndUpdate(Location location) {
         PreparedStatement ps = null;
         try {
@@ -75,6 +87,11 @@ public class LocationDAO {
         return false;
     }
 
+    /**
+     *
+     * @param id parameter for getting data using primary key/id
+     * @return Object Location - will return Location Data by ID or will return NULL if id invalid
+     */
     public Location getById(String id) {
         Location location = null;
         try {
@@ -91,6 +108,11 @@ public class LocationDAO {
         return location;
     }
 
+    /**
+     *
+     * @param id parameter for deleting data using primary key/id
+     * @return boolean - if statement executed will return true, if not will return false
+     */
     public boolean delete(String id) {
         try {
             PreparedStatement preparedStatement = connection
