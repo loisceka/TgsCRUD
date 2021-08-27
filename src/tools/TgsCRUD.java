@@ -29,7 +29,6 @@ public class TgsCRUD {
         RegionDAO rdao = new RegionDAO(dbc.getConnection());
         CountryDAO cdao = new CountryDAO(dbc.getConnection());
         LocationDAO ldao = new LocationDAO(dbc.getConnection());
-       ldao.delete("adad");
     }
 
 }
