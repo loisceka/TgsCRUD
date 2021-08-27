@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import models.Employee;
 
 /**
@@ -81,6 +83,44 @@ public class EmployeeDAO {
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        return false;
+    }
+    
+    //INSERT AND UPDATE / SAVE
+
+    /**
+     *
+     * @param emp using Employee class named emp to get ID for insert or update data
+     * @return boolean - if statement executed will return true, if not will
+     * return false
+     */
+    public boolean save(Employee emp) {
+        try {
+            boolean isInsert = getById(emp.getId()) == null;
+            System.out.println(isInsert ? "Insert Berhasil" : "Update Berhasil");
+            String query = isInsert
+                    ? "INSERT INTO tb_employee(first_name, last_name, email, phone_number, hire_date, "
+                            + "salary, commision_pct, job_id, manager_id, department_id, employee_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+                    : "UPDATE tb_employee SET employee_id = ?, first_name = ?, last_name = ?, email = ?, phone_number = ?, hire_date = ?,"
+                            + "salary = ?, commision_pct = ?,  job_id = ?, manager_id = ?, department_id = ? WHERE employee_id = ?";
+            
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, emp.getFirstName());
+            preparedStatement.setString(2, emp.getLastName());
+            preparedStatement.setString(3, emp.getEmail());
+            preparedStatement.setString(4, emp.getPhone());
+            preparedStatement.setDate(5, emp.getHireDate());
+            preparedStatement.setInt(6, emp.getSalary());
+            preparedStatement.setDouble(7, emp.getCommision());
+            preparedStatement.setString(8, emp.getJobId());
+            preparedStatement.setString(9, emp.getManagerId());
+            preparedStatement.setString(10, emp.getDepartmentId());
+            preparedStatement.setString(11, emp.getId());
+            preparedStatement.execute();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }

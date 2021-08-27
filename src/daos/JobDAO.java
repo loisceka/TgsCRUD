@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import models.Job;
 
 /**
@@ -30,7 +32,6 @@ public class JobDAO {
     }
 
     //GET ALL
-
     /**
      *
      * @return List Data of Job Table
@@ -51,11 +52,11 @@ public class JobDAO {
     }
 
     //INSERT
-
     /**
      *
      * @param job using object Job to insert into table Job
-     * @return boolean - if statement executed will return true, if not will return false 
+     * @return boolean - if statement executed will return true, if not will
+     * return false
      */
     public boolean insert(Job job) {
         try {
@@ -72,13 +73,42 @@ public class JobDAO {
         return false;
     }
 
-    //UPDATE
+    //Insert and Update / SAVE
 
+    /**
+     *
+     * @param job using Job class named job to get ID for insert or update data
+     * @return boolean - if statement executed will return true, if not will
+     * return false
+     */
+    public boolean save(Job job) {
+        try {
+            boolean isInsert = getById(job.getId()) == null;
+            System.out.println(isInsert ? "Insert Berhasil" : "Update Berhasil");
+            String query = isInsert
+                    ? "INSERT INTO tb_job(job_title, min_salary, max_salary, job_id) VALUES (?, ?, ?, ?)"
+                    : "UPDATE tb_job SET job_id = ?, job_title = ?, min_salary = ?, max_salary = ? WHERE job_id = ?";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, job.getId());
+            preparedStatement.setString(2, job.getName());
+            preparedStatement.setInt(3, job.getMinSalary());
+            preparedStatement.setInt(4, job.getMaxSalary());
+            preparedStatement.execute();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DepartmentDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    //UPDATE
     /**
      *
      * @param id parameter for updating data using primary key/id
      * @param job parameter for updating data using object Job
-     * @return boolean - if statement executed will return true, if not will return false
+     * @return boolean - if statement executed will return true, if not will
+     * return false
      */
     public boolean update(String id, Job job) {
         try {
@@ -98,11 +128,11 @@ public class JobDAO {
     }
 
     //DELETE
-
     /**
      *
      * @param id parameter for deleting data using primary key/id
-     * @return boolean - if statement executed will return true, if not will return false
+     * @return boolean - if statement executed will return true, if not will
+     * return false
      */
     public boolean delete(String id) {
         try {
@@ -118,11 +148,11 @@ public class JobDAO {
     }
 
     //GET BY ID
-
     /**
      *
      * @param id parameter for getting data using primary key/id
-     * @return Object Job - will return Job Data by ID or will return NULL if id invalid
+     * @return Object Job - will return Job Data by ID or will return NULL if id
+     * invalid
      */
     public Job getById(String id) {
         Job job = null;

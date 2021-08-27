@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import models.Department;
 
 /**
@@ -71,6 +73,34 @@ public class DepartmentDAO {
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        return false;
+    }
+    
+    //Insert and Update / SAVE
+
+    /**
+     *
+     * @param dep using Department class named dep to get ID for insert or update data
+     * @return boolean - if statement executed will return true, if not will return false
+     */
+    public boolean save(Department dep) {
+        try {
+            boolean isInsert = getById(dep.getId()) == null;
+            System.out.println(isInsert ? "Insert Berhasil" : "Update Berhasil");
+            String query = isInsert
+                    ? "INSERT INTO tb_department(department_name, location_id, manager_id) VALUES (?, ?, ?, ?)"
+                    : "UPDATE tb_department SET department_name = ?, location_id = ?, manager_id = ? WHERE department_id = ?";
+            
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, dep.getName());
+            preparedStatement.setString(2, dep.getLocationId());
+            preparedStatement.setString(3, dep.getManagerId());
+            preparedStatement.setString(4, dep.getId());
+            preparedStatement.execute();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DepartmentDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }

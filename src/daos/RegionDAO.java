@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import models.Region;
 
 /**
@@ -102,15 +104,19 @@ public class RegionDAO {
      */
     public boolean insertAndUpdate(Region region) {
         try {
-            PreparedStatement preparedStatement = connection
-                    .prepareStatement("INSERT INTO tb_region(id, region_name) VALUES (?, ?) ON DUPLICATE KEY UPDATE region_name = ?");
-            preparedStatement.setInt(1, region.getId());
-            preparedStatement.setString(2, region.getName());
-            preparedStatement.setString(3, region.getName());
+            boolean isInsert = getById(region.getId()) == null;
+            System.out.println(isInsert ? "Insert Berhasil" : "Update Berhasil");
+            String query = isInsert
+                    ? "INSERT INTO tb_region(region_name, id) VALUES (?, ?)"
+                    : "UPDATE tb_region SET region_name = ? WHERE region_id = ?";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, region.getName());
+            preparedStatement.setInt(2, region.getId());
             preparedStatement.execute();
             return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            Logger.getLogger(DepartmentDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
