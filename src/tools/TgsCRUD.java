@@ -55,7 +55,7 @@ public class TgsCRUD {
         Date hireDate;
         int salary;
         double commision;
-        DateFormat formatter = new SimpleDateFormat("DD-MM-YYYY");
+        DateFormat formatter = new SimpleDateFormat("YYYY-MM-DD");
         //Connection
         DBConnection dbc = new DBConnection();
         //Dependency
