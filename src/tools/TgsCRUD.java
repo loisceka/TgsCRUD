@@ -5,7 +5,11 @@
  */
 package tools;
 
+import daos.CountryDAO;
+import daos.LocationDAO;
 import daos.RegionDAO;
+import models.Country;
+import models.Location;
 
 /**
  *
@@ -23,6 +27,9 @@ public class TgsCRUD {
 
         //Dependency Injection
         RegionDAO rdao = new RegionDAO(dbc.getConnection());
+        CountryDAO cdao = new CountryDAO(dbc.getConnection());
+        LocationDAO ldao = new LocationDAO(dbc.getConnection());
+       ldao.delete("adad");
     }
 
 }
