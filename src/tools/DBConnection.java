@@ -21,7 +21,6 @@ public class DBConnection {
             Class.forName("com.mysql.jdbc.Driver");
             this.con = DriverManager.
                     getConnection("jdbc:mysql://localhost:3306/db_metrodata?zeroDateTimeBehavior=convertToNull", "root", "");
-            
         } catch (Exception e) {
             System.out.println("Error " + e.getMessage());
         }

@@ -40,14 +40,14 @@ public class TgsCRUD {
         System.out.println(dbc.getConnection());
 
         //Dependency Injection
-        RegionDAO rdao = new RegionDAO(dbc.getConnection());
-        CountryDAO cdao = new CountryDAO(dbc.getConnection());
-        LocationDAO ldao = new LocationDAO(dbc.getConnection());
-        JobDAO jdao = new JobDAO(dbc.getConnection());
-        EmployeeDAO empdao = new EmployeeDAO(dbc.getConnection());
-        DepartmentDAO depdao = new DepartmentDAO(dbc.getConnection());
+//        RegionDAO rdao = new RegionDAO(dbc.getConnection());
+//        CountryDAO cdao = new CountryDAO(dbc.getConnection());
+//        LocationDAO ldao = new LocationDAO(dbc.getConnection());
+//        JobDAO jdao = new JobDAO(dbc.getConnection());
+//        EmployeeDAO empdao = new EmployeeDAO(dbc.getConnection());
+//        DepartmentDAO depdao = new DepartmentDAO(dbc.getConnection());
 
-        menu1();
+//        menu1();
 
     }
 
