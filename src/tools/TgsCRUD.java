@@ -100,19 +100,19 @@ public class TgsCRUD {
                     System.out.println("======================");
                 }
             }
-            if(pil == 4){
-                location: 
-                while(true){
+            if (pil == 4) {
+                location:
+                while (true) {
                     System.out.println("Tabel Location");
                     menu2();
                     System.out.print("Masukkan Pilihan : ");
-                    pil  = scan.nextInt();
+                    pil = scan.nextInt();
                     System.out.println("=====================");
                     tbLocation(pil);
-                    if(pil == 6){
+                    if (pil == 6) {
                         continue menu1;
                     }
-                    
+
                     System.out.println("======================");
                 }
             }
