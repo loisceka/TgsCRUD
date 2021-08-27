@@ -87,6 +87,7 @@ public class TgsCRUD {
             }
             
         }
+
     }
 
     public static void tbEmployee() throws ParseException {
@@ -97,7 +98,7 @@ public class TgsCRUD {
         Date hireDate;
         int salary;
         double commision;
-        DateFormat formatter = new SimpleDateFormat("YYYY-MM-DD");
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         //Connection
         DBConnection dbc = new DBConnection();
         //Dependency

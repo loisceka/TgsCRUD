@@ -10,13 +10,14 @@ package models;
  * @author loisceka
  */
 public class Country {
+
     private String id;
     private String name;
     private int region;
 
     public Country() {
     }
-    
+
     public Country(String id, String name, int region) {
         this.id = id;
         this.name = name;
@@ -51,5 +52,5 @@ public class Country {
     public String toString() {
         return "Country{" + "id=" + id + ", name=" + name + ", region=" + region + '}';
     }
-    
+
 }

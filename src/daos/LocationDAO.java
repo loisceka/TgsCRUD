@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import models.Country;
 import models.Location;
 
 /**
@@ -21,10 +20,21 @@ import models.Location;
  * @author loisceka
  */
 public class LocationDAO {
+
     private Connection connection;
-     public LocationDAO(Connection connection) {
+
+    /**
+     *
+     * @param connection using connection to send query statement into mysql
+     */
+    public LocationDAO(Connection connection) {
         this.connection = connection;
     }
+
+    /**
+     *
+     * @return List Data of Location Table
+     */
     public List<Location> getAll() {
         List<Location> locations = new ArrayList<>();
         try {
@@ -32,8 +42,8 @@ public class LocationDAO {
                     .prepareStatement("SELECT * FROM tb_location")
                     .executeQuery();
             while (resultSet.next()) {
-                locations.add(new Location(resultSet.getString(1),resultSet.getString(2),resultSet.getString(3),
-                resultSet.getString(4),resultSet.getString(5),resultSet.getString(6)
+                locations.add(new Location(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3),
+                        resultSet.getString(4), resultSet.getString(5), resultSet.getString(6)
                 ));
             }
         } catch (Exception e) {
@@ -41,38 +51,48 @@ public class LocationDAO {
         }
         return locations;
     }
-     public boolean insertAndUpdate(Location location){
+
+    /**
+     *
+     * @param location using object Location to insert or update into table Location, id from location will be used to check if ID used or not
+     * @return boolean - if statement executed will return true, if not will return false
+     */
+    public boolean insertAndUpdate(Location location) {
         PreparedStatement ps = null;
         try {
             ps = connection.prepareStatement("Select * From tb_location where location_id = ?");
             ps.setString(1, location.getId());
             ResultSet set = ps.executeQuery();
             set.last();
-                if(set.getRow()<1){
-                    ps = connection.prepareStatement("INSERT INTO tb_location (street_address,postal_code,city,state_province,country_id,location_id)VALUES(?,?,?,?,?,?)");
-                    System.out.println("INSERT\n");
-                }
-                else{
-                    ps = connection.prepareStatement("UPDATE tb_location SET street_address = ?, postal_code = ?,city=?,state_province=?,country_id=? where location_id = ?");         
-                    System.out.println("UPDATE\n");
-                     
-                }
+            if (set.getRow() < 1) {
+                ps = connection.prepareStatement("INSERT INTO tb_location (street_address,postal_code,city,state_province,country_id,location_id)VALUES(?,?,?,?,?,?)");
+                System.out.println("INSERT\n");
+            } else {
+                ps = connection.prepareStatement("UPDATE tb_location SET street_address = ?, postal_code = ?,city=?,state_province=?,country_id=? where location_id = ?");
+                System.out.println("UPDATE\n");
+
+            }
             ps.setString(1, location.getStreet());
             ps.setString(2, location.getPostalCode());
             ps.setString(3, location.getCity());
             ps.setString(4, location.getProvince());
             ps.setString(5, location.getCountry());
-            ps.setString(6, location.getId());   
+            ps.setString(6, location.getId());
             ps.execute();
-            return true;    
-        } 
-        catch (SQLException ex) {          
-            Logger.getLogger(RegionDAO.class.getName()).log(Level.SEVERE, null, ex);       
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(RegionDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return false;
     }
-      public Location getById(String id) {
+
+    /**
+     *
+     * @param id parameter for getting data using primary key/id
+     * @return Object Location - will return Location Data by ID or will return NULL if id invalid
+     */
+    public Location getById(String id) {
         Location location = null;
         try {
             PreparedStatement preparedStatement = connection
@@ -80,13 +100,19 @@ public class LocationDAO {
             preparedStatement.setString(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                location = new Location(resultSet.getString(1),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),resultSet.getString(5),resultSet.getString(6));
+                location = new Location(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return location;
     }
+
+    /**
+     *
+     * @param id parameter for deleting data using primary key/id
+     * @return boolean - if statement executed will return true, if not will return false
+     */
     public boolean delete(String id) {
         try {
             PreparedStatement preparedStatement = connection

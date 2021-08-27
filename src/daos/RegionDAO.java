@@ -21,11 +21,20 @@ public class RegionDAO {
 
     private Connection connection;
 
+    /**
+     *
+     * @param connection using connection to send query statement into mysql
+     */
     public RegionDAO(Connection connection) {
         this.connection = connection;
     }
 
     //GET ALL
+
+    /**
+     *
+     * @return List Data of Region Table
+     */
     public List<Region> getAll() {
         List<Region> regions = new ArrayList<>();
         try {
@@ -33,9 +42,6 @@ public class RegionDAO {
                     .prepareStatement("SELECT * FROM tb_region")
                     .executeQuery();
             while (resultSet.next()) {
-//                Region region = new Region();
-//                region.setRegionId(resultSet.getInt(1));
-//                region.setRegionName(resultSet.getString(2));
                 regions.add(new Region(resultSet.getInt("id"), resultSet.getString(2)));
             }
         } catch (Exception e) {
@@ -45,6 +51,12 @@ public class RegionDAO {
     }
 
     //INSERT
+
+    /**
+     *
+     * @param region
+     * @return
+     */
     public boolean insert(Region region) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO tb_region(id, region_name) VALUES (?, ?)");
@@ -59,6 +71,13 @@ public class RegionDAO {
     }
 
     //UPDATE
+
+    /**
+     *
+     * @param id
+     * @param region
+     * @return
+     */
     public boolean update(Integer id, Region region) {
         try {
             PreparedStatement preparedStatement = connection
@@ -75,6 +94,12 @@ public class RegionDAO {
     }
 
     //New Method
+
+    /**
+     *
+     * @param region
+     * @return
+     */
     public boolean insertAndUpdate(Region region) {
         try {
             PreparedStatement preparedStatement = connection
@@ -91,6 +116,12 @@ public class RegionDAO {
     }
 
     //DELETE
+
+    /**
+     *
+     * @param id
+     * @return
+     */
     public boolean delete(Integer id) {
         try {
             PreparedStatement preparedStatement = connection
@@ -105,6 +136,12 @@ public class RegionDAO {
     }
 
     //GET BY ID
+
+    /**
+     *
+     * @param id
+     * @return
+     */
     public Region getById(Integer id) {
         Region region = null;
         try {

@@ -10,6 +10,7 @@ package models;
  * @author loisceka
  */
 public class Location {
+
     private String id;
     private String street;
     private String postalCode;
@@ -81,6 +82,5 @@ public class Location {
     public String toString() {
         return "Location{" + "id=" + id + ", street=" + street + ", postalCode=" + postalCode + ", city=" + city + ", province=" + province + ", country=" + country + '}';
     }
-    
-    
+
 }

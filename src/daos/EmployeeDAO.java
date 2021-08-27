@@ -21,11 +21,21 @@ public class EmployeeDAO {
 
     private Connection connection;
 
+    /**
+     *
+     * @param connection using connection to send query statement into mysql
+     */
     public EmployeeDAO(Connection connection) {
         this.connection = connection;
     }
 
+    
     //GET ALL
+
+    /**
+     *
+     * @return List Data of Employee Table
+     */
     public List<Employee> getAll() {
         List<Employee> emp = new ArrayList<>();
         try {
@@ -33,9 +43,9 @@ public class EmployeeDAO {
                     .prepareStatement("SELECT * FROM tb_employee")
                     .executeQuery();
             while (resultSet.next()) {
-                emp.add(new Employee(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4)
-                        , resultSet.getString(5), resultSet.getDate(6), resultSet.getInt(7), resultSet.getDouble(8), resultSet.getString(9)
-                , resultSet.getString(10), resultSet.getString(11)));
+                emp.add(new Employee(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4),
+                         resultSet.getString(5), resultSet.getDate(6), resultSet.getInt(7), resultSet.getDouble(8), resultSet.getString(9),
+                         resultSet.getString(10), resultSet.getString(11)));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,6 +55,12 @@ public class EmployeeDAO {
 
     // 
     //INSERT
+
+    /**
+     *
+     * @param emp using object Employee to insert into table employee
+     * @return boolean - if statement executed will return true, if not will return false 
+     */
     public boolean insert(Employee emp) {
         try {
             PreparedStatement preparedStatement = connection
@@ -70,6 +86,13 @@ public class EmployeeDAO {
     }
 
     //UPDATE
+
+    /**
+     *
+     * @param id parameter for updating data using primary key/id
+     * @param emp parameter for updating data using object Employee
+     * @return boolean - if statement executed will return true, if not will return false
+     */
     public boolean update(String id, Employee emp) {
         try {
             PreparedStatement preparedStatement = connection
@@ -95,6 +118,12 @@ public class EmployeeDAO {
     }
 
     //DELETE
+
+    /**
+     *
+     * @param id parameter for deleting data using primary key/id
+     * @return boolean - if statement executed will return true, if not will return false
+     */
     public boolean delete(String id) {
         try {
             PreparedStatement preparedStatement = connection
@@ -109,6 +138,12 @@ public class EmployeeDAO {
     }
 
     //GET BY ID
+
+    /**
+     *
+     * @param id parameter for getting data using primary key/id
+     * @return Object Employee - will return Employee Data by ID or will return NULL if id invalid
+     */
     public Employee getById(String id) {
         Employee emp = null;
         try {
@@ -117,9 +152,9 @@ public class EmployeeDAO {
             preparedStatement.setString(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                emp = new Employee(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4)
-                        , resultSet.getString(5), resultSet.getDate(6), resultSet.getInt(7), resultSet.getDouble(8), resultSet.getString(9)
-                , resultSet.getString(10), resultSet.getString(11));
+                emp = new Employee(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4),
+                         resultSet.getString(5), resultSet.getDate(6), resultSet.getInt(7), resultSet.getDouble(8), resultSet.getString(9),
+                         resultSet.getString(10), resultSet.getString(11));
             }
         } catch (Exception e) {
             e.printStackTrace();
