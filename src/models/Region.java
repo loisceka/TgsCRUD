@@ -40,6 +40,6 @@ public class Region {
 
     @Override
     public String toString() {
-        return "Region{" + "Id=" + id + ", Name=" + name + '}';
+        return id + "-"+ name;
     }
 }
