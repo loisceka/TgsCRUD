@@ -56,8 +56,9 @@ public class RegionDAO {
 
     /**
      *
-     * @param region
-     * @return
+     * @param region using object Region to insert into table Region
+     * @return boolean - if statement executed will return true, if not will
+     * return false
      */
     public boolean insert(Region region) {
         try {
@@ -76,9 +77,10 @@ public class RegionDAO {
 
     /**
      *
-     * @param id
-     * @param region
-     * @return
+     * @param id parameter for updating data using primary key/id
+     * @param region parameter for updating data using object Region
+     * @return boolean - if statement executed will return true, if not will
+     * return false
      */
     public boolean update(Integer id, Region region) {
         try {
@@ -99,8 +101,9 @@ public class RegionDAO {
 
     /**
      *
-     * @param region
-     * @return
+     * @param region using Region class named region to get ID for insert or update data
+     * @return boolean - if statement executed will return true, if not will
+     * return false
      */
     public boolean insertAndUpdate(Region region) {
         try {
@@ -125,8 +128,9 @@ public class RegionDAO {
 
     /**
      *
-     * @param id
-     * @return
+     * @param id parameter for deleting data using primary key/id
+     * @return boolean - if statement executed will return true, if not will
+     * return false
      */
     public boolean delete(Integer id) {
         try {
@@ -145,8 +149,9 @@ public class RegionDAO {
 
     /**
      *
-     * @param id
-     * @return
+     * @param id parameter for getting data using primary key/id
+     * @return Object Region - will return Region Data by ID or will return NULL if id
+     * invalid
      */
     public Region getById(Integer id) {
         Region region = null;
