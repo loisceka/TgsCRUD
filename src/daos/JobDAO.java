@@ -87,13 +87,13 @@ public class JobDAO {
             System.out.println(isInsert ? "Insert Berhasil" : "Update Berhasil");
             String query = isInsert
                     ? "INSERT INTO tb_job(job_title, min_salary, max_salary, job_id) VALUES (?, ?, ?, ?)"
-                    : "UPDATE tb_job SET job_id = ?, job_title = ?, min_salary = ?, max_salary = ? WHERE job_id = ?";
+                    : "UPDATE tb_job SET job_title = ?, min_salary = ?, max_salary = ? WHERE job_id = ?";
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, job.getId());
-            preparedStatement.setString(2, job.getName());
-            preparedStatement.setInt(3, job.getMinSalary());
-            preparedStatement.setInt(4, job.getMaxSalary());
+            preparedStatement.setString(1, job.getName());
+            preparedStatement.setInt(2, job.getMinSalary());
+            preparedStatement.setInt(3, job.getMaxSalary());
+            preparedStatement.setString(4, job.getId());
             preparedStatement.execute();
             return true;
         } catch (SQLException ex) {

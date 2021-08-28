@@ -89,7 +89,7 @@ public class DepartmentDAO {
             boolean isInsert = getById(dep.getId()) == null;
             System.out.println(isInsert ? "Insert Berhasil" : "Update Berhasil");
             String query = isInsert
-                    ? "INSERT INTO tb_department(department_name, location_id, manager_id) VALUES (?, ?, ?, ?)"
+                    ? "INSERT INTO tb_department(department_name, location_id, manager_id, department_id) VALUES (?, ?, ?, ?)"
                     : "UPDATE tb_department SET department_name = ?, location_id = ?, manager_id = ? WHERE department_id = ?";
             
             PreparedStatement preparedStatement = connection.prepareStatement(query);

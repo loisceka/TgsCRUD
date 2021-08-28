@@ -102,7 +102,7 @@ public class EmployeeDAO {
             String query = isInsert
                     ? "INSERT INTO tb_employee(first_name, last_name, email, phone_number, hire_date, "
                             + "salary, commision_pct, job_id, manager_id, department_id, employee_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
-                    : "UPDATE tb_employee SET employee_id = ?, first_name = ?, last_name = ?, email = ?, phone_number = ?, hire_date = ?,"
+                    : "UPDATE tb_employee SET first_name = ?, last_name = ?, email = ?, phone_number = ?, hire_date = ?,"
                             + "salary = ?, commision_pct = ?,  job_id = ?, manager_id = ?, department_id = ? WHERE employee_id = ?";
             
             PreparedStatement preparedStatement = connection.prepareStatement(query);

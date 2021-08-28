@@ -159,7 +159,7 @@ public class TgsCRUD {
 
     public static void tbEmployee(int pilihan) throws ParseException {
         String dateString;
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         if (pilihan == 1) {
             for (Employee emp : empdao.getAll()) {
                 System.out.println(emp.toString());
@@ -171,29 +171,29 @@ public class TgsCRUD {
             System.out.println((Objects.isNull(emp)) ? "Tidak Ada dengan Data ID " + ids : emp.toString());
         } else if (pilihan == 3) {
             Employee emp = new Employee();
-            System.out.println("ID: ");
+            System.out.print("ID: ");
             emp.setId(scan.next());
-            System.out.println("First Name: ");
-            emp.setFirstName(scan.nextLine());
-            System.out.println("Last Name: ");
-            emp.setLastName(scan.nextLine());
-            System.out.println("Email: ");
+            System.out.print("First Name: ");
+            emp.setFirstName(scan.next());
+            System.out.print("Last Name: ");
+            emp.setLastName(scan.next());
+            System.out.print("Email: ");
             emp.setEmail(scan.next());
-            System.out.println("Phone: ");
+            System.out.print("Phone: ");
             emp.setPhone(scan.next());
-            System.out.println("Hire Date: ");
-            dateString = scan.nextLine();
-            emp.setHireDate((Date) formatter.parse(dateString));
-            System.out.println("Salary: ");
+            System.out.print("Hire Date: ");
+            dateString = scan.next();
+            emp.setHireDate(Date.valueOf(dateString));
+            System.out.print("Salary: ");
             emp.setSalary(scan.nextInt());
-            System.out.println("Commision: ");
+            System.out.print("Commision: ");
             emp.setCommision(scan.nextDouble());
-            System.out.println("Job ID: ");
-            emp.setJobId(scan.nextLine());
-            System.out.println("Manager ID: ");
-            emp.setManagerId(scan.nextLine());
-            System.out.println("Department ID: ");
-            emp.setManagerId(scan.nextLine());
+            System.out.print("Job ID: ");
+            emp.setJobId(scan.next());
+            System.out.print("Manager ID: ");
+            emp.setManagerId(scan.next());
+            System.out.print("Department ID: ");
+            emp.setDepartmentId(scan.next());
             empdao.save(emp);
         } else if (pilihan == 4) {
             Employee emp = new Employee();
@@ -202,27 +202,27 @@ public class TgsCRUD {
             if (Objects.isNull(empdao.getById(emp.getId()))) {
                 System.out.println("Tidak Ada Data dengan ID " + emp.getId());
             } else {
-                System.out.println("First Name: ");
-                emp.setFirstName(scan.nextLine());
-                System.out.println("Last Name: ");
-                emp.setLastName(scan.nextLine());
-                System.out.println("Email: ");
+                System.out.print("First Name: ");
+                emp.setFirstName(scan.next());
+                System.out.print("Last Name: ");
+                emp.setLastName(scan.next());
+                System.out.print("Email: ");
                 emp.setEmail(scan.next());
-                System.out.println("Phone: ");
+                System.out.print("Phone: ");
                 emp.setPhone(scan.next());
-                System.out.println("Hire Date: ");
-                dateString = scan.nextLine();
-                emp.setHireDate((Date) formatter.parse(dateString));
-                System.out.println("Salary: ");
+                System.out.print("Hire Date: ");
+                dateString = scan.next();
+                emp.setHireDate(Date.valueOf(dateString));
+                System.out.print("Salary: ");
                 emp.setSalary(scan.nextInt());
-                System.out.println("Commision: ");
+                System.out.print("Commision: ");
                 emp.setCommision(scan.nextDouble());
-                System.out.println("Job ID: ");
-                emp.setJobId(scan.nextLine());
-                System.out.println("Manager ID: ");
-                emp.setManagerId(scan.nextLine());
-                System.out.println("Department ID: ");
-                emp.setManagerId(scan.nextLine());
+                System.out.print("Job ID: ");
+                emp.setJobId(scan.next());
+                System.out.print("Manager ID: ");
+                emp.setManagerId(scan.next());
+                System.out.print("Department ID: ");
+                emp.setDepartmentId(scan.next());
                 empdao.save(emp);
             }
         } else if (pilihan == 5) {
@@ -244,14 +244,14 @@ public class TgsCRUD {
             System.out.println((Objects.isNull(dep)) ? "Tidak Ada dengan Data ID " + ids : dep.toString());
         } else if (pilihan == 3) {
             Department dep = new Department();
-            System.out.println("ID: ");
+            System.out.print("ID: ");
             dep.setId(scan.next());
-            System.out.println("Department Name: ");
-            dep.setName(scan.nextLine());
-            System.out.println("Location ID: ");
-            dep.setLocationId(scan.nextLine());
-            System.out.println("Manager ID: ");
-            dep.setManagerId(scan.nextLine());
+            System.out.print("Department Name: ");
+            dep.setName(scan.next());
+            System.out.print("Location ID: ");
+            dep.setLocationId(scan.next());
+            System.out.print("Manager ID: ");
+            dep.setManagerId(scan.next());
             depdao.save(dep);
         } else if (pilihan == 4) {
             Department dep = new Department();
@@ -260,12 +260,12 @@ public class TgsCRUD {
             if (Objects.isNull(jdao.getById(dep.getId()))) {
                 System.out.println("Tidak Ada Data dengan ID " + dep.getId());
             } else {
-                System.out.println("Department Name: ");
-                dep.setName(scan.nextLine());
-                System.out.println("Location ID: ");
-                dep.setLocationId(scan.nextLine());
-                System.out.println("Manager ID: ");
-                dep.setManagerId(scan.nextLine());
+                System.out.print("Department Name: ");
+                dep.setName(scan.next());
+                System.out.print("Location ID: ");
+                dep.setLocationId(scan.next());
+                System.out.print("Manager ID: ");
+                dep.setManagerId(scan.next());
                 depdao.save(dep);
             }
         } else if (pilihan == 5) {
@@ -286,13 +286,13 @@ public class TgsCRUD {
             System.out.println((Objects.isNull(job)) ? "Tidak Ada dengan Data ID " + ids : job.toString());
         } else if (pilihan == 3) {
             Job job = new Job();
-            System.out.println("ID: ");
+            System.out.print("ID: ");
             job.setId(scan.next());
-            System.out.println("Job Name: ");
-            job.setName(scan.nextLine());
-            System.out.println("Min Salary: ");
+            System.out.print("Job Name: ");
+            job.setName(scan.next());
+            System.out.print("Min Salary: ");
             job.setMinSalary(scan.nextInt());
-            System.out.println("Max Salary: ");
+            System.out.print("Max Salary: ");
             job.setMaxSalary(scan.nextInt());
             jdao.save(job);
         } else if (pilihan == 4) {
@@ -302,11 +302,11 @@ public class TgsCRUD {
             if (Objects.isNull(jdao.getById(job.getId()))) {
                 System.out.println("Tidak Ada Data dengan ID " + job.getId());
             } else {
-                System.out.println("Job Name: ");
+                System.out.print("Job Name: ");
                 job.setName(scan.next());
-                System.out.println("Min Salary: ");
+                System.out.print("Min Salary: ");
                 job.setMinSalary(scan.nextInt());
-                System.out.println("Max Salary: ");
+                System.out.print("Max Salary: ");
                 job.setMaxSalary(scan.nextInt());
                 jdao.save(job);
             }
