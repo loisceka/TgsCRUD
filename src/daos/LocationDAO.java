@@ -54,8 +54,10 @@ public class LocationDAO {
 
     /**
      *
-     * @param location using object Location to insert or update into table Location, id from location will be used to check if ID used or not
-     * @return boolean - if statement executed will return true, if not will return false
+     * @param location using object Location to insert or update into table
+     * Location, id from location will be used to check if ID used or not
+     * @return boolean - if statement executed will return true, if not will
+     * return false
      */
     public boolean insertAndUpdate(Location location) {
         try {
@@ -64,7 +66,6 @@ public class LocationDAO {
             String query = isInsert
                     ? "INSERT INTO tb_location (street_address,postal_code,city,state_province,country_id,location_id)VALUES(?,?,?,?,?,?)"
                     : "UPDATE tb_location SET street_address = ?, postal_code = ?,city=?,state_province=?,country_id=? where location_id = ?";
-
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, location.getStreet());
@@ -79,13 +80,14 @@ public class LocationDAO {
             Logger.getLogger(LocationDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
-       
+
     }
 
     /**
      *
      * @param id parameter for getting data using primary key/id
-     * @return Object Location - will return Location Data by ID or will return NULL if id invalid
+     * @return Object Location - will return Location Data by ID or will return
+     * NULL if id invalid
      */
     public Location getById(String id) {
         Location location = null;
@@ -106,7 +108,8 @@ public class LocationDAO {
     /**
      *
      * @param id parameter for deleting data using primary key/id
-     * @return boolean - if statement executed will return true, if not will return false
+     * @return boolean - if statement executed will return true, if not will
+     * return false
      */
     public boolean delete(String id) {
         try {

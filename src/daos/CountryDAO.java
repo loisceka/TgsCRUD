@@ -52,8 +52,10 @@ public class CountryDAO {
 
     /**
      *
-     * @param country using object Country to insert or update into table Country, id from country will be used to check if ID used or not
-     * @return boolean - if statement executed will return true, if not will return false
+     * @param country using object Country to insert or update into table
+     * Country, id from country will be used to check if ID used or not
+     * @return boolean - if statement executed will return true, if not will
+     * return false
      */
     public boolean insertAndUpdate(Country country) {
         try {
@@ -62,7 +64,6 @@ public class CountryDAO {
             String query = isInsert
                     ? "INSERT INTO tb_country(country_name,region,country_id) VALUES(?,?,?)"
                     : "UPDATE tb_country SET country_name = ?, region = ? where country_id = ?";
-
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, country.getName());
@@ -74,13 +75,14 @@ public class CountryDAO {
             Logger.getLogger(RegionDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
-        
+
     }
 
     /**
      *
      * @param id parameter for deleting data using primary key/id
-     * @return boolean - if statement executed will return true, if not will return false
+     * @return boolean - if statement executed will return true, if not will
+     * return false
      */
     public boolean delete(String id) {
         try {
@@ -98,7 +100,8 @@ public class CountryDAO {
     /**
      *
      * @param id parameter for getting data using primary key/id
-     * @return Object Country - will return Country Data by ID or will return NULL if id invalid
+     * @return Object Country - will return Country Data by ID or will return
+     * NULL if id invalid
      */
     public Country getById(String id) {
         Country country = null;
