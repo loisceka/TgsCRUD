@@ -56,30 +56,25 @@ public class CountryDAO {
      * @return boolean - if statement executed will return true, if not will return false
      */
     public boolean insertAndUpdate(Country country) {
-        PreparedStatement ps = null;
         try {
-            ps = connection.prepareStatement("Select * From tb_country where country_id = ?");
-            ps.setString(1, country.getId());
-            ResultSet set = ps.executeQuery();
-            set.last();
-            if (set.getRow() < 1) {
-                ps = connection.prepareStatement("INSERT INTO tb_country(country_name,region,country_id) VALUES(?,?,?)");
-                System.out.println("INSERT\n");
-            } else {
-                ps = connection.prepareStatement("UPDATE tb_country SET country_name = ?, region = ? where country_id = ?");
-                System.out.println("UPDATE\n");
+            boolean isInsert = getById(country.getId()) == null;
+            System.out.println(isInsert ? "Insert Berhasil" : "Update Berhasil");
+            String query = isInsert
+                    ? "INSERT INTO tb_country(country_name,region,country_id) VALUES(?,?,?)"
+                    : "UPDATE tb_country SET country_name = ?, region = ? where country_id = ?";
 
-            }
-            ps.setString(1, country.getName());
-            ps.setInt(2, country.getRegion());
-            ps.setString(3, country.getId());
-            ps.execute();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, country.getName());
+            preparedStatement.setInt(2, country.getRegion());
+            preparedStatement.setString(3, country.getId());
+            preparedStatement.execute();
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(CountryDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegionDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return false;
+        
     }
 
     /**

@@ -371,46 +371,56 @@ public class TgsCRUD {
 
     public static void tbLocation(int pilihan) {
         if(pilihan == 1){
-            for(Country country : cdao.getAll()){
-                System.out.println(country.toString());    
+            for(Location location : ldao.getAll()){
+                System.out.println(location.toString());    
             }
         }
         else if(pilihan == 2){
            System.out.println("Masukkan ID yang dicari");
            String ids = "";
-           Country c = cdao.getById(ids = scan.next());
-            System.out.println((Objects.isNull(c)) ? "Tidak Ada dengan Data ID " + ids : c.toString());
+           Location l = ldao.getById(ids = scan.next());
+            System.out.println((Objects.isNull(l)) ? "Tidak Ada dengan Data ID " + ids : l.toString());
         }
         else if(pilihan ==  3){
-            Country c = new Country();
+            Location c = new Location();
             System.out.print("Masukkan ID : "  );
             c.setId(scan.next());
-            System.out.print("Masukkan Nama : "  );
-            c.setName(scan.next());
-            System.out.print("Masukkan ID Region : "  );
-            c.setRegion(scan.nextInt());
-            cdao.insertAndUpdate(c);
+            System.out.print("Masukkan Street Adress : "  );
+            c.setStreet(scan.next());
+            System.out.print("Masukkan Postal Code : "  );
+            c.setPostalCode(scan.next());
+            System.out.print("Masukkan City : ");
+            c.setCity(scan.next());
+            System.out.print("Masukkan State Province : "  );
+            c.setProvince(scan.next());
+            System.out.print("Masukkan Country ID : "  );
+            c.setCountry(scan.next());
+            ldao.insertAndUpdate(c);
         }
         else if(pilihan ==  4){
-            Country c= new Country();
+            Location c = new Location();
             System.out.print("Masukkan ID : "  );
             c.setId(scan.next());
-            if(Objects.isNull(cdao.getById(c.getId()))){
+            if(Objects.isNull(ldao.getById(c.getId()))){
                 System.out.println("Tidak Ada Data dengan ID " + c.getId());
             }
             else{
-                System.out.print("Masukkan Nama : "  );
-                String name = scan.next();
-                c.setName(name);
-                System.out.print("Masukkan ID Region : "  );
-                int r = scan.nextInt();
-                c.setRegion(r);
-                cdao.insertAndUpdate(c);
+                System.out.print("Masukkan Street Adress : "  );
+                c.setStreet(scan.next());
+                System.out.print("Masukkan Postal Code : "  );
+                c.setPostalCode(scan.next());
+                System.out.print("Masukkan City : ");
+                c.setCity(scan.next());
+                System.out.print("Masukkan State Province : "  );
+                c.setProvince(scan.next());
+                System.out.print("Masukkan Country ID : "  );
+                c.setCountry(scan.next());
+                ldao.insertAndUpdate(c);
             }
         }
         else if(pilihan ==  5){
             System.out.print("Masukkan ID : ");
-            cdao.delete(scan.next());
+            ldao.delete(scan.next());
         }
         
     }

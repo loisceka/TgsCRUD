@@ -58,33 +58,28 @@ public class LocationDAO {
      * @return boolean - if statement executed will return true, if not will return false
      */
     public boolean insertAndUpdate(Location location) {
-        PreparedStatement ps = null;
         try {
-            ps = connection.prepareStatement("Select * From tb_location where location_id = ?");
-            ps.setString(1, location.getId());
-            ResultSet set = ps.executeQuery();
-            set.last();
-            if (set.getRow() < 1) {
-                ps = connection.prepareStatement("INSERT INTO tb_location (street_address,postal_code,city,state_province,country_id,location_id)VALUES(?,?,?,?,?,?)");
-                System.out.println("INSERT\n");
-            } else {
-                ps = connection.prepareStatement("UPDATE tb_location SET street_address = ?, postal_code = ?,city=?,state_province=?,country_id=? where location_id = ?");
-                System.out.println("UPDATE\n");
+            boolean isInsert = getById(location.getId()) == null;
+            System.out.println(isInsert ? "Insert Berhasil" : "Update Berhasil");
+            String query = isInsert
+                    ? "INSERT INTO tb_location (street_address,postal_code,city,state_province,country_id,location_id)VALUES(?,?,?,?,?,?)"
+                    : "UPDATE tb_location SET street_address = ?, postal_code = ?,city=?,state_province=?,country_id=? where location_id = ?";
 
-            }
-            ps.setString(1, location.getStreet());
-            ps.setString(2, location.getPostalCode());
-            ps.setString(3, location.getCity());
-            ps.setString(4, location.getProvince());
-            ps.setString(5, location.getCountry());
-            ps.setString(6, location.getId());
-            ps.execute();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, location.getStreet());
+            preparedStatement.setString(2, location.getPostalCode());
+            preparedStatement.setString(3, location.getCity());
+            preparedStatement.setString(4, location.getProvince());
+            preparedStatement.setString(5, location.getCountry());
+            preparedStatement.setString(6, location.getId());
+            preparedStatement.execute();
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(RegionDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LocationDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return false;
+       
     }
 
     /**
